@@ -16,6 +16,7 @@ Mantenha-se motivado e apoie outros participantes.
 
 Progresso
 Java 1/7: Consumir uma API de filmes - ok
+Java 2/7: Trabalhar com JSON, Strings e Regex - ok
 
 Como participar
 Faça um fork deste repositório.
@@ -24,6 +25,7 @@ Crie uma branch para cada um dos projetos diários.
 Desenvolva seu projeto diariamente.
 Atualize o arquivo README.md com uma descrição e link para cada projeto.
 Compartilhe seu progresso nas redes sociais usando a hashtag #7DaysOfCode.
+
 Contribuição
 Contribuições são bem-vindas! Se você tiver ideias para melhorar este repositório ou quiser adicionar mais projetos, sinta-se à vontade para abrir uma issue ou enviar um pull request.
 
