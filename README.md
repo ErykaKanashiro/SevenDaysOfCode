@@ -17,6 +17,7 @@ Mantenha-se motivado e apoie outros participantes.
 Progresso
 Java 1/7: Consumir uma API de filmes - ok
 Java 2/7: Trabalhar com JSON, Strings e Regex - ok
+Java 3/7: Modelando um domínio - ok
 
 Como participar
 Faça um fork deste repositório.
