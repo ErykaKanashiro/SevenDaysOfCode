@@ -1,28 +1,31 @@
+import model.Filme;
+
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) throws URISyntaxException {
 
         System.out.println("Requisição TOP 250 Filmes do IMDB");
 
-        String apiKey = "XXXXXXXX";
+        String apiKey = "XXXXXXXXXX";
+        String uri = "https://imdb-api.com/en/API/Top250Movies/" + apiKey;
 
         String responseJson = "";
 
         String[] movies;
-        String[] atributos;
 
         HttpClient client = HttpClient.newHttpClient();
 
         HttpRequest httpRequest = HttpRequest.newBuilder()
-                .uri(new URI("https://imdb-api.com/en/API/Top250Movies/" + apiKey))
+                .uri(new URI(uri))
                 .GET()
                 .build();
 
@@ -35,7 +38,7 @@ public class Main {
             String responseBody = response.body();
 
             System.out.println("Status: " + statusCode);
-            System.out.println("Body: " + responseBody);
+            System.out.println("Body: " + responseBody + "\n");
 
             responseJson = response.body();
 
@@ -45,58 +48,50 @@ public class Main {
 
         movies = parseJsonMovies(responseJson);
 
-        atributos = parseJsonAtributos(movies);
+        List<String> titulos = parseTitulo(movies);
+        List<String> urlImages = parseUrlImages(movies);
+        List<String> anos = parseAno(movies);
+        List<String> notas = parseNota(movies);
 
-        List<String> titulos = parseTitulos(atributos);
-        List<String> urlsImagens = parseUrlsImagens(atributos);
+        List<Filme> filmes = new ArrayList<>();
 
-        System.out.println("Quantidade de títulos:" + titulos.size());
-        System.out.println("Quantidade de urls:" + titulos.size());
-
-        titulos.forEach(System.out::println);
-        urlsImagens.forEach(System.out::println);
-    }
-
-    private static List<String> parseTitulos(String[] atributos) {
-        List<String> titulos = new ArrayList<>();
-
-        for(int i = 0; i < atributos.length; i++){
-            String[] atributo = atributos[i].split(",");
-            String titulo = atributo[2].substring(9);
-            titulos.add(titulo);
+        for(int i = 0; i < movies.length; i++){
+            filmes.add(new Filme(titulos.get(i), urlImages.get(i), anos.get(i), notas.get(i)));
         }
 
-      return titulos;
-    }
-
-    private static List<String> parseUrlsImagens(String[] atributos) {
-
-        List<String> urls = new ArrayList<>();
-
-        for(int i = 0; i < atributos.length; i++){
-            String[] atributo = atributos[i].split(",");
-            String url = atributo[5].substring(9);
-            urls.add(url);
-        }
-
-        return urls;
+        filmes.forEach(System.out::println);
     }
 
     static String[] parseJsonMovies(String responseJson){
 
-        String[] movies = responseJson.split("},");
+        String[] movies = responseJson.split("\\},\\{");
         movies[0] = movies[0].substring(10);
-
+        movies[movies.length - 1] = movies[movies.length - 1].split("\\}")[0];
         return movies;
     }
 
-    static String[] parseJsonAtributos(String[] movies){
+    static List<String> parseJsonAtributos(String[] movies, int pos){
 
-        String[] atributos = new String[250];
+        return Stream.of(movies)
+                .map(e -> e.split("\",\"")[pos])
+                .map(e -> e.split(":\"")[1])
+                .map(e -> e.replaceAll("\"", ""))
+                .collect(Collectors.toList());
+    }
 
-        for (int i = 0; i < movies.length; i++) {
-            atributos[i] = Arrays.toString((movies[i].split(",")));
-        }
-         return atributos;
+    private static List<String> parseTitulo(String[] movies) {
+        return parseJsonAtributos(movies, 3);
+    }
+
+    private static List<String> parseUrlImages(String[] movies) {
+        return parseJsonAtributos(movies, 5);
+    }
+
+    private static List<String> parseAno(String[] movies) {
+        return parseJsonAtributos(movies, 4);
+    }
+
+    private static List<String> parseNota(String[] movies) {
+        return parseJsonAtributos(movies, 7);
     }
 }
