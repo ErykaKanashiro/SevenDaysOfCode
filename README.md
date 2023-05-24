@@ -20,23 +20,29 @@ Crie um repositório para cada projeto diário.
 Mantenha-se motivado e apoie outros participantes.
 
 Progresso
+
 Java 1/7: Consumir uma API de filmes - ok
+
 Java 2/7: Trabalhar com JSON, Strings e Regex - ok
+
 Java 3/7: Modelando um domínio - ok
-Java 3/7: Gerando o HTML - ok
+
+Java 4/7: Gerando o HTML - ok
 
 Como participar
+
 Faça um fork deste repositório.
 Clone o repositório para sua máquina local.
-Crie uma branch para cada um dos projetos diários.
 Desenvolva seu projeto diariamente.
 Atualize o arquivo README.md com uma descrição e link para cada projeto.
 Compartilhe seu progresso nas redes sociais usando a hashtag #7DaysOfCode.
 
 Contribuição
+
 Contribuições são bem-vindas! Se você tiver ideias para melhorar este repositório ou quiser adicionar mais projetos, sinta-se à vontade para abrir uma issue ou enviar um pull request.
 
 Inspirado por
+
 O #7DaysOfCode foi inspirado por iniciativas semelhantes, como o #100DaysOfCode. A ideia por trás desses desafios é incentivar os desenvolvedores a se comprometerem a aprender e crescer profissionalmente.
 
 Juntos! 💻✨
