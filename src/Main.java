@@ -1,5 +1,7 @@
 import model.Filme;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.http.HttpClient;
@@ -11,16 +13,15 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Main {
-    public static void main(String[] args) throws URISyntaxException {
-
-        System.out.println("Requisição TOP 250 Filmes do IMDB");
+    public static void main(String[] args) throws URISyntaxException, FileNotFoundException {
 
         String apiKey = "XXXXXXXXXX";
+
         String uri = "https://imdb-api.com/en/API/Top250Movies/" + apiKey;
 
         String responseJson = "";
 
-        String[] movies;
+        PrintWriter out = new PrintWriter("index.html");
 
         HttpClient client = HttpClient.newHttpClient();
 
@@ -46,20 +47,10 @@ public class Main {
             System.out.println("Erro ao fazer a requisição: " + e.getMessage());
         }
 
-        movies = parseJsonMovies(responseJson);
+        HTMLGenerator htmlGenerator = new HTMLGenerator(out);
+        htmlGenerator.generateHTML(parseFilmes(responseJson));
 
-        List<String> titulos = parseTitulo(movies);
-        List<String> urlImages = parseUrlImages(movies);
-        List<String> anos = parseAno(movies);
-        List<String> notas = parseNota(movies);
-
-        List<Filme> filmes = new ArrayList<>();
-
-        for(int i = 0; i < movies.length; i++){
-            filmes.add(new Filme(titulos.get(i), urlImages.get(i), anos.get(i), notas.get(i)));
-        }
-
-        filmes.forEach(System.out::println);
+        out.close();
     }
 
     static String[] parseJsonMovies(String responseJson){
@@ -93,5 +84,22 @@ public class Main {
 
     private static List<String> parseNota(String[] movies) {
         return parseJsonAtributos(movies, 7);
+    }
+
+    static List<Filme> parseFilmes(String responseJson){
+
+        String[] movies = parseJsonMovies(responseJson);
+
+        List<String> titulos = parseTitulo(movies);
+        List<String> urlImages = parseUrlImages(movies);
+        List<String> anos = parseAno(movies);
+        List<String> notas = parseNota(movies);
+
+        List<Filme> filmes = new ArrayList<>();
+
+        for(int i = 0; i < movies.length; i++){
+            filmes.add(new Filme(titulos.get(i), urlImages.get(i), anos.get(i), notas.get(i)));
+        }
+        return filmes;
     }
 }

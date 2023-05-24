@@ -2,6 +2,11 @@
 
 #7DaysOfCode
 
+[![GitHub contributors](https://img.shields.io/github/contributors/ErykaKanashiro/SevenDaysOfCode)](https://github.com/ErykaKanashiro/SevenDaysOfCode)
+[![GitHub stars](https://img.shields.io/github/stars/ErykaKanashiro/SevenDaysOfCode?style=social)](https://github.com/ErykaKanashiro/SevenDaysOfCode)
+[![GitHub forks](https://img.shields.io/github/forks/ErykaKanashiro/SevenDaysOfCode?style=social)](https://github.com/ErykaKanashiro/SevenDaysOfCode)
+
+
 Descrição
 O #7DaysOfCode é um desafio de programação de sete dias, projetado para ajudar os desenvolvedores a aprimorar suas habilidades e construir o hábito de codificar diariamente. Durante sete dias consecutivos, os participantes são encorajados a reservar um tempo dedicado à codificação e a compartilhar seu progresso nas redes sociais usando a hashtag #7DaysOfCode.
 
@@ -18,6 +23,7 @@ Progresso
 Java 1/7: Consumir uma API de filmes - ok
 Java 2/7: Trabalhar com JSON, Strings e Regex - ok
 Java 3/7: Modelando um domínio - ok
+Java 3/7: Gerando o HTML - ok
 
 Como participar
 Faça um fork deste repositório.

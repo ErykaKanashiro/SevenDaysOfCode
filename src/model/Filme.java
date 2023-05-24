@@ -14,6 +14,22 @@ public class Filme {
         this.nota = nota;
     }
 
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public String getUrlImage() {
+        return urlImage;
+    }
+
+    public String getAno() {
+        return ano;
+    }
+
+    public String getNota() {
+        return nota;
+    }
+
     @Override
     public String toString() {
         return "Filme{" +
