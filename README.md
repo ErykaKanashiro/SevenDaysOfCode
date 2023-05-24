@@ -29,6 +29,8 @@ Java 3/7: Modelando um domínio - ok
 
 Java 4/7: Gerando o HTML - ok
 
+Java 5/7: Encapsulando o código - ok
+
 Como participar
 
 Faça um fork deste repositório.
